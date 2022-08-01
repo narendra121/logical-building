@@ -9,7 +9,7 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/queue-ticket.go"
+            "program": "${workspaceFolder}/atm-go.go"
         }
     ]
 }
