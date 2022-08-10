@@ -22,13 +22,13 @@ type BankTransaction interface {
 	CheckBalance(name string)
 }
 
-type accounts map[string]Account
+type accounts map[string]*Account
 
 func (a *accounts) Deposit(ac Account) {
 	if *a == nil {
-		*a = make(map[string]Account)
+		*a = make(map[string]*Account)
 	}
-	(*a)[ac.Name] = ac
+	(*a)[ac.Name] = &ac
 	fmt.Println(a)
 }
 
