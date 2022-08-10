@@ -20,9 +20,12 @@ response:-
 input:-
 4 4 2,3,3,5
 
+
 response:-
 3
 
+
+go run other/lottery.go 4 4 2,3,3,5
 */
 
 package main
