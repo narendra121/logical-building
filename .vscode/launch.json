@@ -9,7 +9,12 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/atm-go.go"
+            "program": "${workspaceFolder}/other/bank-atm.go",
+            "args": [
+                "4",
+                "4",
+                "2,3,3,5"
+            ]
         }
     ]
 }

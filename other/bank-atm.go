@@ -22,40 +22,49 @@ type BankTransaction interface {
 	CheckBalance(name string)
 }
 
-var accounts = make([]Account, 0)
+type accounts map[string]Account
 
-func (a *Account) Deposit(ac Account) {
-	a.Name = ac.Name
-	a.amount = ac.amount
-	a.limit = ac.limit
-	accounts = append(accounts, *a)
+func (a *accounts) Deposit(ac Account) {
+	if *a == nil {
+		*a = make(map[string]Account)
+	}
+	(*a)[ac.Name] = ac
 	fmt.Println(a)
 }
 
-func (a *Account) CheckBalance(name string) {
-
-	fmt.Println(a.amount)
+func (a *accounts) CheckBalance(name string) {
+	val, ok := (*a)[name]
+	if ok {
+		fmt.Println(name+"'s current Balance is: ", val)
+		return
+	}
+	fmt.Println("No User Found With Name " + name)
 }
-func (a *Account) Withdraw(moneyReq int) int {
-	if a.amount < moneyReq {
+func (a *accounts) Withdraw(moneyReq int, name string) int {
+	value, ok := (*a)[name]
+	if !ok {
+		fmt.Println("No User Found With Name " + name)
+		return 0
+	}
+	if value.amount < moneyReq {
 		return 0
 	}
 	with := 0
 	count := 0
 	temp := moneyReq
-	for a.amount != 0 {
+	for value.amount != 0 {
 		if with >= moneyReq {
 			break
 		}
-		if temp < a.limit {
-			a.amount = a.amount - temp
+		if temp < value.limit {
+			value.amount = value.amount - temp
 
 		} else {
-			a.amount = a.amount - a.limit
+			value.amount = value.amount - value.limit
 
 		}
-		temp = temp - a.limit
-		with += a.limit
+		temp = temp - value.limit
+		with += value.limit
 		count++
 
 	}
@@ -63,14 +72,14 @@ func (a *Account) Withdraw(moneyReq int) int {
 }
 
 func main() {
-	var myTr BankTransaction
-	myTr = &Account{}
+	var myTr accounts
+	myTr = make(accounts, 0)
 	myTr.Deposit(Account{
 		Name:   "narendra",
-		amount: 1000,
-		limit:  1000000,
+		amount: 1000000,
+		limit:  1000,
 	})
-	fmt.Println(myTr.Withdraw(5500))
+	fmt.Println("User has to do ", myTr.Withdraw(5500, "narendra"), " transactions to withdraw the money")
 	myTr.CheckBalance("narendra")
 
 }
