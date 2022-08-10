@@ -8,12 +8,12 @@ if none of them predicted correct number we need to find the number of people wh
 eg :- in input we give 3 params lotteryNumber,NumberOfPeopleInGroup,PeoplesPredictedNumbers
 
 input:-
-1 4  3,4,5,6
+1 4  1,4,5,6
 response:-
 1
 
 input:-
-1 4  3,5,5,6
+1 4  4,2,5,6
 response:-
 1
 
