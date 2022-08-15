@@ -1,3 +1,11 @@
+/*
+calculation of age by using input from cmd
+go run other/age-cal.go Y 2020-06-02
+go run other/age-cal.go M 2020-06-02
+go run other/age-cal.go D 2020-06-02
+go run other/age-cal.go H 2020-06-02
+
+*/
 package main
 
 import (
